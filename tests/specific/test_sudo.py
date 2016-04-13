@@ -1,5 +1,5 @@
 import pytest
-from thefuck.specific.sudo import sudo_support
+from theoops.specific.sudo import sudo_support
 from tests.utils import Command
 
 

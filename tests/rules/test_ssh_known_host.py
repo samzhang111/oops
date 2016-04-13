@@ -1,6 +1,6 @@
 import os
 import pytest
-from thefuck.rules.ssh_known_hosts import match, get_new_command,\
+from theoops.rules.ssh_known_hosts import match, get_new_command,\
     side_effect
 from tests.utils import Command
 

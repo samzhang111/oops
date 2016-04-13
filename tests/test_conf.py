@@ -1,18 +1,18 @@
 import pytest
 import six
 from mock import Mock
-from thefuck import const
+from theoops import const
 
 
 @pytest.fixture
 def load_source(mocker):
-    return mocker.patch('thefuck.conf.load_source')
+    return mocker.patch('theoops.conf.load_source')
 
 
 @pytest.fixture
 def environ(monkeypatch):
     data = {}
-    monkeypatch.setattr('thefuck.conf.os.environ', data)
+    monkeypatch.setattr('theoops.conf.os.environ', data)
     return data
 
 
@@ -54,12 +54,12 @@ class TestSettingsFromFile(object):
 @pytest.mark.usefixture('load_source')
 class TestSettingsFromEnv(object):
     def test_from_env(self, environ, settings):
-        environ.update({'THEFUCK_RULES': 'bash:lisp',
-                        'THEFUCK_EXCLUDE_RULES': 'git:vim',
-                        'THEFUCK_WAIT_COMMAND': '55',
-                        'THEFUCK_REQUIRE_CONFIRMATION': 'true',
-                        'THEFUCK_NO_COLORS': 'false',
-                        'THEFUCK_PRIORITY': 'bash=10:lisp=wrong:vim=15'})
+        environ.update({'THEOOPS_RULES': 'bash:lisp',
+                        'THEOOPS_EXCLUDE_RULES': 'git:vim',
+                        'THEOOPS_WAIT_COMMAND': '55',
+                        'THEOOPS_REQUIRE_CONFIRMATION': 'true',
+                        'THEOOPS_NO_COLORS': 'false',
+                        'THEOOPS_PRIORITY': 'bash=10:lisp=wrong:vim=15'})
         settings.init()
         assert settings.rules == ['bash', 'lisp']
         assert settings.exclude_rules == ['git', 'vim']
@@ -69,7 +69,7 @@ class TestSettingsFromEnv(object):
         assert settings.priority == {'bash': 10, 'vim': 15}
 
     def test_from_env_with_DEFAULT(self, environ, settings):
-        environ.update({'THEFUCK_RULES': 'DEFAULT_RULES:bash:lisp'})
+        environ.update({'THEOOPS_RULES': 'DEFAULT_RULES:bash:lisp'})
         settings.init()
         assert settings.rules == const.DEFAULT_RULES + ['bash', 'lisp']
 

@@ -1,5 +1,5 @@
-from thefuck.rules.git_branch_list import match, get_new_command
-from thefuck.shells import shell
+from theoops.rules.git_branch_list import match, get_new_command
+from theoops.shells import shell
 from tests.utils import Command
 
 

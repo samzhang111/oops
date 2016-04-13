@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.no_such_file import match, get_new_command
+from theoops.rules.no_such_file import match, get_new_command
 from tests.utils import Command
 
 

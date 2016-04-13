@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.cp_omitting_directory import match, get_new_command
+from theoops.rules.cp_omitting_directory import match, get_new_command
 from tests.utils import Command
 
 

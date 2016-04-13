@@ -1,6 +1,6 @@
 import pytest
 from tests.utils import Command
-from thefuck.rules.heroku_not_command import match, get_new_command
+from theoops.rules.heroku_not_command import match, get_new_command
 
 
 def suggest_stderr(cmd):

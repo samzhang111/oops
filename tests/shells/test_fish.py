@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from thefuck.shells import Fish
+from theoops.shells import Fish
 
 
 @pytest.mark.usefixtures('isfile', 'no_memoize', 'no_cache')
@@ -12,9 +12,9 @@ class TestFish(object):
 
     @pytest.fixture(autouse=True)
     def Popen(self, mocker):
-        mock = mocker.patch('thefuck.shells.fish.Popen')
+        mock = mocker.patch('theoops.shells.fish.Popen')
         mock.return_value.stdout.read.return_value = (
-            b'cd\nfish_config\nfuck\nfunced\nfuncsave\ngrep\nhistory\nll\nls\n'
+            b'cd\nfish_config\noops\nfunced\nfuncsave\ngrep\nhistory\nll\nls\n'
             b'man\nmath\npopd\npushd\nruby')
         return mock
 
@@ -24,10 +24,10 @@ class TestFish(object):
 
     @pytest.mark.parametrize('key, value', [
         ('TF_OVERRIDDEN_ALIASES', 'cut,git,sed'),  # legacy
-        ('THEFUCK_OVERRIDDEN_ALIASES', 'cut,git,sed'),
-        ('THEFUCK_OVERRIDDEN_ALIASES', 'cut, git, sed'),
-        ('THEFUCK_OVERRIDDEN_ALIASES', ' cut,\tgit,sed\n'),
-        ('THEFUCK_OVERRIDDEN_ALIASES', '\ncut,\n\ngit,\tsed\r')])
+        ('THEOOPS_OVERRIDDEN_ALIASES', 'cut,git,sed'),
+        ('THEOOPS_OVERRIDDEN_ALIASES', 'cut, git, sed'),
+        ('THEOOPS_OVERRIDDEN_ALIASES', ' cut,\tgit,sed\n'),
+        ('THEOOPS_OVERRIDDEN_ALIASES', '\ncut,\n\ngit,\tsed\r')])
     def test_get_overridden_aliases(self, shell, os_environ):
         assert shell._get_overridden_aliases() == {'cd', 'cut', 'git', 'grep',
                                                    'ls', 'man', 'open', 'sed'}
@@ -35,7 +35,7 @@ class TestFish(object):
     @pytest.mark.parametrize('before, after', [
         ('cd', 'cd'),
         ('pwd', 'pwd'),
-        ('fuck', 'fish -ic "fuck"'),
+        ('oops', 'fish -ic "oops"'),
         ('find', 'find'),
         ('funced', 'fish -ic "funced"'),
         ('grep', 'grep'),
@@ -57,7 +57,7 @@ class TestFish(object):
 
     def test_get_aliases(self, shell):
         assert shell.get_aliases() == {'fish_config': 'fish_config',
-                                       'fuck': 'fuck',
+                                       'oops': 'oops',
                                        'funced': 'funced',
                                        'funcsave': 'funcsave',
                                        'history': 'history',
@@ -68,11 +68,11 @@ class TestFish(object):
                                        'ruby': 'ruby'}
 
     def test_app_alias(self, shell):
-        assert 'function fuck' in shell.app_alias('fuck')
-        assert 'function FUCK' in shell.app_alias('FUCK')
-        assert 'thefuck' in shell.app_alias('fuck')
-        assert 'TF_ALIAS=fuck PYTHONIOENCODING' in shell.app_alias('fuck')
-        assert 'PYTHONIOENCODING=utf-8 thefuck' in shell.app_alias('fuck')
+        assert 'function oops' in shell.app_alias('oops')
+        assert 'function OOPS' in shell.app_alias('OOPS')
+        assert 'theoops' in shell.app_alias('oops')
+        assert 'TF_ALIAS=oops PYTHONIOENCODING' in shell.app_alias('oops')
+        assert 'PYTHONIOENCODING=utf-8 theoops' in shell.app_alias('oops')
 
     def test_get_history(self, history_lines, shell):
         history_lines(['- cmd: ls', '  when: 1432613911',

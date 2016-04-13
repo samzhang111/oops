@@ -1,5 +1,5 @@
 import pytest
-from thefuck import logs
+from theoops import logs
 
 
 def test_color(settings):

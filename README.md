@@ -1,4 +1,6 @@
-# The Fuck [![Version][version-badge]][version-link] [![Build Status][travis-badge]][travis-link] [![Windows Build Status][appveyor-badge]][appveyor-link] [![Coverage][coverage-badge]][coverage-link] [![MIT License][license-badge]](LICENSE.md)
+This is a fork of [thefuck](https://github.com/nvbn/thefuck) with "oops" replacing "fuck" :).
+
+# The Oops [![Version][version-badge]][version-link] [![Build Status][travis-badge]][travis-link] [![Windows Build Status][appveyor-badge]][appveyor-link] [![Coverage][coverage-badge]][coverage-link] [![MIT License][license-badge]](LICENSE.md)
 
 Magnificent app which corrects your previous console command,
 inspired by a [@liamosaur](https://twitter.com/liamosaur/)
@@ -13,7 +15,7 @@ Few more examples:
 E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 
-➜ fuck
+➜ oops
 sudo apt-get install vim [enter/↑/↓/ctrl+c]
 [sudo] password for nvbn:
 Reading package lists... Done
@@ -28,7 +30,7 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin master
 
 
-➜ fuck
+➜ oops
 git push --set-upstream origin master [enter/↑/↓/ctrl+c]
 Counting objects: 9, done.
 ...
@@ -41,7 +43,7 @@ No command 'puthon' found, did you mean:
  Command 'python' from package 'python3' (main)
 zsh: command not found: puthon
 
-➜ fuck
+➜ oops
 python [enter/↑/↓/ctrl+c]
 Python 3.4.2 (default, Oct  8 2014, 13:08:17)
 ...
@@ -54,7 +56,7 @@ git: 'brnch' is not a git command. See 'git --help'.
 Did you mean this?
     branch
 
-➜ fuck
+➜ oops
 git branch [enter/↑/↓/ctrl+c]
 * master
 ```
@@ -66,7 +68,7 @@ git branch [enter/↑/↓/ctrl+c]
 Did you mean this?
          repl
 
-➜ fuck
+➜ oops
 lein repl [enter/↑/↓/ctrl+c]
 nREPL server started on port 54848 on host 127.0.0.1 - nrepl://127.0.0.1:54848
 REPL-y 0.3.1
@@ -81,7 +83,7 @@ If you are not scared to blindly run the changed command, there is a `require_co
 E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 
-➜ fuck
+➜ oops
 sudo apt-get install vim
 [sudo] password for nvbn:
 Reading package lists... Done
@@ -96,31 +98,31 @@ Reading package lists... Done
 
 ## Installation [*experimental*]
 
-On Ubuntu and OS X you can install `The Fuck` with installation script:
+On Ubuntu and OS X you can install `The Oops` with installation script:
 
 ```bash
-wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh - && $0
+wget -O - https://raw.githubusercontent.com/nvbn/theoops/master/install.sh | sh - && $0
 ```
 
 ## Manual installation
 
-Install `The Fuck` with `pip`:
+Install `The Oops` with `pip`:
 
 ```bash
-sudo -H pip install thefuck
+sudo -H pip install theoops
 ```
 
-[Or using an OS package manager (OS X, Ubuntu, Arch).](https://github.com/nvbn/thefuck/wiki/Installation)
+[Or using an OS package manager (OS X, Ubuntu, Arch).](https://github.com/nvbn/theoops/wiki/Installation)
 
 You should place this command in your `.bash_profile`, `.bashrc`, `.zshrc` or other startup script:
 
 ```bash
-eval "$(thefuck --alias)"
+eval "$(theoops --alias)"
 # You can use whatever you want as an alias, like for Mondays:
-eval "$(thefuck --alias FUCK)"
+eval "$(theoops --alias OOPS)"
 ```
 
-[Or in your shell config (Bash, Zsh, Fish, Powershell, tcsh).](https://github.com/nvbn/thefuck/wiki/Shell-aliases)
+[Or in your shell config (Bash, Zsh, Fish, Powershell, tcsh).](https://github.com/nvbn/theoops/wiki/Shell-aliases)
 
 Changes will be available only in a new shell session.
 To make them available immediately, run `source ~/.bashrc` (or your shell config file like `.zshrc`).
@@ -129,14 +131,14 @@ To make them available immediately, run `source ~/.bashrc` (or your shell config
 ## Update
 
 ```bash
-sudo pip install thefuck --upgrade
+sudo pip install theoops --upgrade
 ```
 
 **Aliases changed in 1.34.**
 
 ## How it works
 
-The Fuck tries to match a rule for the previous command, creates a new command
+The Oops tries to match a rule for the previous command, creates a new command
 using the matched rule and runs it. Rules enabled by default are as follows:
 
 * `cargo` &ndash; runs `cargo build` instead of `cargo`;
@@ -234,7 +236,7 @@ Bundled, but not enabled by default:
 ## Creating your own rules
 
 For adding your own rule you should create `your-rule-name.py`
-in `~/.config/thefuck/rules`. The rule should contain two functions:
+in `~/.config/theoops/rules`. The rule should contain two functions:
 
 ```python
 match(command: Command) -> bool
@@ -250,8 +252,8 @@ and optional `enabled_by_default`, `requires_output` and `priority` variables.
 
 `Command` has three attributes: `script`, `stdout` and `stderr`.
 
-*Rules api changed in 3.0:* For accessing settings in rule you need to import it with `from thefuck.conf import settings`.
-`settings` is a special object filled with `~/.config/thefuck/settings.py` and values from env ([see more below](#settings)).
+*Rules api changed in 3.0:* For accessing settings in rule you need to import it with `from theoops.conf import settings`.
+`settings` is a special object filled with `~/.config/theoops/settings.py` and values from env ([see more below](#settings)).
 
 Simple example of the rule for running script with `sudo`:
 
@@ -275,15 +277,15 @@ priority = 1000  # Lower first, default is 1000
 requires_output = True
 ```
 
-[More examples of rules](https://github.com/nvbn/thefuck/tree/master/thefuck/rules),
-[utility functions for rules](https://github.com/nvbn/thefuck/tree/master/thefuck/utils.py),
-[app/os-specific helpers](https://github.com/nvbn/thefuck/tree/master/thefuck/specific/).
+[More examples of rules](https://github.com/nvbn/theoops/tree/master/theoops/rules),
+[utility functions for rules](https://github.com/nvbn/theoops/tree/master/theoops/utils.py),
+[app/os-specific helpers](https://github.com/nvbn/theoops/tree/master/theoops/specific/).
 
 ## Settings
 
-The Fuck has a few settings parameters which can be changed in `$XDG_CONFIG_HOME/thefuck/settings.py` (`$XDG_CONFIG_HOME` defaults to `~/.config`):
+The Oops has a few settings parameters which can be changed in `$XDG_CONFIG_HOME/theoops/settings.py` (`$XDG_CONFIG_HOME` defaults to `~/.config`):
 
-* `rules` &ndash; list of enabled rules, by default `thefuck.conf.DEFAULT_RULES`;
+* `rules` &ndash; list of enabled rules, by default `theoops.conf.DEFAULT_RULES`;
 * `exclude_rules` &ndash; list of disabled rules, by default `[]`;
 * `require_confirmation` &ndash; requires confirmation before running new command, by default `True`;
 * `wait_command` &ndash; max amount of time in seconds for getting previous command output;
@@ -307,32 +309,32 @@ debug = False
 
 Or via environment variables:
 
-* `THEFUCK_RULES` &ndash; list of enabled rules, like `DEFAULT_RULES:rm_root` or `sudo:no_command`;
-* `THEFUCK_EXCLUDE_RULES` &ndash; list of disabled rules, like `git_pull:git_push`;
-* `THEFUCK_REQUIRE_CONFIRMATION` &ndash; require confirmation before running new command, `true/false`;
-* `THEFUCK_WAIT_COMMAND` &ndash; max amount of time in seconds for getting previous command output;
-* `THEFUCK_NO_COLORS` &ndash; disable colored output, `true/false`;
-* `THEFUCK_PRIORITY` &ndash; priority of the rules, like `no_command=9999:apt_get=100`,
+* `THEOOPS_RULES` &ndash; list of enabled rules, like `DEFAULT_RULES:rm_root` or `sudo:no_command`;
+* `THEOOPS_EXCLUDE_RULES` &ndash; list of disabled rules, like `git_pull:git_push`;
+* `THEOOPS_REQUIRE_CONFIRMATION` &ndash; require confirmation before running new command, `true/false`;
+* `THEOOPS_WAIT_COMMAND` &ndash; max amount of time in seconds for getting previous command output;
+* `THEOOPS_NO_COLORS` &ndash; disable colored output, `true/false`;
+* `THEOOPS_PRIORITY` &ndash; priority of the rules, like `no_command=9999:apt_get=100`,
 rule with lower `priority` will be matched first;
-* `THEFUCK_DEBUG` &ndash; enables debug output, `true/false`;
-* `THEFUCK_HISTORY_LIMIT` &ndash; how many history commands will be scanned, like `2000`;
-* `THEFUCK_ALTER_HISTORY` &ndash; push fixed command to history `true/false`.
+* `THEOOPS_DEBUG` &ndash; enables debug output, `true/false`;
+* `THEOOPS_HISTORY_LIMIT` &ndash; how many history commands will be scanned, like `2000`;
+* `THEOOPS_ALTER_HISTORY` &ndash; push fixed command to history `true/false`.
 
 For example:
 
 ```bash
-export THEFUCK_RULES='sudo:no_command'
-export THEFUCK_EXCLUDE_RULES='git_pull:git_push'
-export THEFUCK_REQUIRE_CONFIRMATION='true'
-export THEFUCK_WAIT_COMMAND=10
-export THEFUCK_NO_COLORS='false'
-export THEFUCK_PRIORITY='no_command=9999:apt_get=100'
-export THEFUCK_HISTORY_LIMIT='2000'
+export THEOOPS_RULES='sudo:no_command'
+export THEOOPS_EXCLUDE_RULES='git_pull:git_push'
+export THEOOPS_REQUIRE_CONFIRMATION='true'
+export THEOOPS_WAIT_COMMAND=10
+export THEOOPS_NO_COLORS='false'
+export THEOOPS_PRIORITY='no_command=9999:apt_get=100'
+export THEOOPS_HISTORY_LIMIT='2000'
 ```
 
 ## Developing
 
-Install `The Fuck` for development:
+Install `The Oops` for development:
 
 ```bash
 pip install -r requirements.txt
@@ -362,13 +364,13 @@ sudo apt-get install pandoc
 Project License can be found [here](LICENSE.md).
 
 
-[version-badge]:   https://img.shields.io/pypi/v/thefuck.svg?label=version
-[version-link]:    https://pypi.python.org/pypi/thefuck/
-[travis-badge]:    https://img.shields.io/travis/nvbn/thefuck.svg
-[travis-link]:     https://travis-ci.org/nvbn/thefuck
-[appveyor-badge]:  https://img.shields.io/appveyor/ci/nvbn/thefuck.svg?label=windows%20build
-[appveyor-link]:   https://ci.appveyor.com/project/nvbn/thefuck
-[coverage-badge]:  https://img.shields.io/coveralls/nvbn/thefuck.svg
-[coverage-link]:   https://coveralls.io/github/nvbn/thefuck
+[version-badge]:   https://img.shields.io/pypi/v/theoops.svg?label=version
+[version-link]:    https://pypi.python.org/pypi/theoops/
+[travis-badge]:    https://img.shields.io/travis/nvbn/theoops.svg
+[travis-link]:     https://travis-ci.org/nvbn/theoops
+[appveyor-badge]:  https://img.shields.io/appveyor/ci/nvbn/theoops.svg?label=windows%20build
+[appveyor-link]:   https://ci.appveyor.com/project/nvbn/theoops
+[coverage-badge]:  https://img.shields.io/coveralls/nvbn/theoops.svg
+[coverage-link]:   https://coveralls.io/github/nvbn/theoops
 [license-badge]:   https://img.shields.io/badge/license-MIT-007EC7.svg
-[examples-link]:   https://raw.githubusercontent.com/nvbn/thefuck/master/example.gif
+[examples-link]:   https://raw.githubusercontent.com/nvbn/theoops/master/example.gif

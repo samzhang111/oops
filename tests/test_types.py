@@ -6,8 +6,8 @@ from mock import Mock
 from pathlib import Path
 import pytest
 from tests.utils import CorrectedCommand, Rule, Command
-from thefuck import const
-from thefuck.exceptions import EmptyCommand
+from theoops import const
+from theoops.exceptions import EmptyCommand
 
 
 class TestCorrectedCommand(object):
@@ -34,7 +34,7 @@ class TestRule(object):
         match = object()
         get_new_command = object()
         load_source = mocker.patch(
-            'thefuck.types.load_source',
+            'theoops.types.load_source',
             return_value=Mock(match=match,
                               get_new_command=get_new_command,
                               enabled_by_default=True,
@@ -96,13 +96,13 @@ class TestCommand(object):
         Popen = Mock()
         Popen.return_value.stdout.read.return_value = b'stdout'
         Popen.return_value.stderr.read.return_value = b'stderr'
-        monkeypatch.setattr('thefuck.types.Popen', Popen)
+        monkeypatch.setattr('theoops.types.Popen', Popen)
         return Popen
 
     @pytest.fixture(autouse=True)
     def prepare(self, monkeypatch):
-        monkeypatch.setattr('thefuck.types.os.environ', {})
-        monkeypatch.setattr('thefuck.types.Command._wait_output',
+        monkeypatch.setattr('theoops.types.os.environ', {})
+        monkeypatch.setattr('theoops.types.Command._wait_output',
                             staticmethod(lambda *_: True))
 
     def test_from_script_calls(self, Popen, settings):

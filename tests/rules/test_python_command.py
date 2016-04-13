@@ -1,4 +1,4 @@
-from thefuck.rules.python_command import match, get_new_command
+from theoops.rules.python_command import match, get_new_command
 from tests.utils import Command
 
 

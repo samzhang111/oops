@@ -1,7 +1,7 @@
 import pytest
 from mock import Mock
 import six
-from thefuck.utils import default_settings, \
+from theoops.utils import default_settings, \
     memoize, get_closest, get_all_executables, replace_argument, \
     get_all_matched_commands, is_app, for_app, cache, compatibility_call, \
     get_valid_history_without_current
@@ -51,8 +51,8 @@ class TestGetClosest(object):
 
 @pytest.fixture
 def get_aliases(mocker):
-    mocker.patch('thefuck.shells.shell.get_aliases',
-                 return_value=['vim', 'apt-get', 'fsck', 'fuck'])
+    mocker.patch('theoops.shells.shell.get_aliases',
+                 return_value=['vim', 'apt-get', 'fsck', 'oops'])
 
 
 @pytest.mark.usefixtures('no_memoize', 'get_aliases')
@@ -60,7 +60,7 @@ def test_get_all_executables():
     all_callables = get_all_executables()
     assert 'vim' in all_callables
     assert 'fsck' in all_callables
-    assert 'fuck' not in all_callables
+    assert 'oops' not in all_callables
 
 
 @pytest.mark.parametrize('args, result', [
@@ -124,7 +124,7 @@ def test_for_app(script, names, result):
 class TestCache(object):
     @pytest.fixture(autouse=True)
     def enable_cache(self, monkeypatch):
-        monkeypatch.setattr('thefuck.utils.cache.disabled', False)
+        monkeypatch.setattr('theoops.utils.cache.disabled', False)
 
     @pytest.fixture
     def shelve(self, mocker):
@@ -146,12 +146,12 @@ class TestCache(object):
             def close(self):
                 return
 
-        mocker.patch('thefuck.utils.shelve.open', new_callable=lambda: _Shelve)
+        mocker.patch('theoops.utils.shelve.open', new_callable=lambda: _Shelve)
         return value
 
     @pytest.fixture(autouse=True)
     def mtime(self, mocker):
-        mocker.patch('thefuck.utils.os.path.getmtime', return_value=0)
+        mocker.patch('theoops.utils.os.path.getmtime', return_value=0)
 
     @pytest.fixture
     def fn(self):
@@ -235,24 +235,24 @@ class TestCompatibilityCall(object):
 class TestGetValidHistoryWithoutCurrent(object):
     @pytest.fixture(autouse=True)
     def history(self, mocker):
-        return mocker.patch('thefuck.shells.shell.get_history',
-                            return_value=['le cat', 'fuck', 'ls cat',
+        return mocker.patch('theoops.shells.shell.get_history',
+                            return_value=['le cat', 'oops', 'ls cat',
                                           'diff x', 'nocommand x'])
 
     @pytest.fixture(autouse=True)
     def alias(self, mocker):
-        return mocker.patch('thefuck.utils.get_alias',
-                            return_value='fuck')
+        return mocker.patch('theoops.utils.get_alias',
+                            return_value='oops')
 
     @pytest.fixture(autouse=True)
     def callables(self, mocker):
-        return mocker.patch('thefuck.utils.get_all_executables',
+        return mocker.patch('theoops.utils.get_all_executables',
                             return_value=['diff', 'ls'])
 
     @pytest.mark.parametrize('script, result', [
         ('le cat', ['ls cat', 'diff x']),
         ('diff x', ['ls cat']),
-        ('fuck', ['ls cat', 'diff x'])])
+        ('oops', ['ls cat', 'diff x'])])
     def test_get_valid_history_without_current(self, script, result):
         command = Command(script=script)
         assert get_valid_history_without_current(command) == result

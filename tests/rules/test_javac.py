@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.javac import match, get_new_command
+from theoops.rules.javac import match, get_new_command
 from tests.utils import Command
 
 

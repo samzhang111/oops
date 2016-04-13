@@ -1,4 +1,4 @@
-from thefuck.rules.ls_lah import match, get_new_command
+from theoops.rules.ls_lah import match, get_new_command
 from tests.utils import Command
 
 

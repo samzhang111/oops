@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.lein_not_task import match, get_new_command
+from theoops.rules.lein_not_task import match, get_new_command
 from tests.utils import Command
 
 

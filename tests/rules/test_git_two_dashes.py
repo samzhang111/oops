@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.git_two_dashes import match, get_new_command
+from theoops.rules.git_two_dashes import match, get_new_command
 from tests.utils import Command
 
 

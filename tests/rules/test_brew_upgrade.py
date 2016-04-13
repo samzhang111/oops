@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.brew_upgrade import match, get_new_command
+from theoops.rules.brew_upgrade import match, get_new_command
 from tests.utils import Command
 
 

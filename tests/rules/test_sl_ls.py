@@ -1,5 +1,5 @@
 
-from thefuck.rules.sl_ls import match, get_new_command
+from theoops.rules.sl_ls import match, get_new_command
 from tests.utils import Command
 
 

@@ -1,7 +1,7 @@
 import pytest
 from io import BytesIO
 from tests.utils import Command
-from thefuck.rules.docker_not_command import get_new_command, match
+from theoops.rules.docker_not_command import get_new_command, match
 
 
 @pytest.fixture

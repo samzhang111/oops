@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 import pytest
-from thefuck.rules import switch_lang
+from theoops.rules import switch_lang
 from tests.utils import Command
 
 

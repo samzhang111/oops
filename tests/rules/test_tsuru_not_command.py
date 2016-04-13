@@ -1,7 +1,7 @@
 import pytest
 
 from tests.utils import Command
-from thefuck.rules.tsuru_not_command import match, get_new_command
+from theoops.rules.tsuru_not_command import match, get_new_command
 
 
 @pytest.mark.parametrize('command', [
@@ -55,7 +55,7 @@ def test_match(command):
         '- ruby20\n'
         '- static\n'
     )),
-    Command('tsuru env-get', stderr='Error: App thefuck not found.'),
+    Command('tsuru env-get', stderr='Error: App theoops not found.'),
 ])
 def test_not_match(command):
     assert not match(command)

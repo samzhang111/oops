@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.cargo_no_command import match, get_new_command
+from theoops.rules.cargo_no_command import match, get_new_command
 from tests.utils import Command
 
 

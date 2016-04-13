@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.pip_unknown_command import match, get_new_command
+from theoops.rules.pip_unknown_command import match, get_new_command
 from tests.utils import Command
 
 

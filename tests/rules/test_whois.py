@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.whois import match, get_new_command
+from theoops.rules.whois import match, get_new_command
 from tests.utils import Command
 
 

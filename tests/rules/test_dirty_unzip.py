@@ -3,7 +3,7 @@
 import os
 import pytest
 import zipfile
-from thefuck.rules.dirty_unzip import match, get_new_command, side_effect
+from theoops.rules.dirty_unzip import match, get_new_command, side_effect
 from tests.utils import Command
 from unicodedata import normalize
 

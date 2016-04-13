@@ -1,7 +1,7 @@
 from io import BytesIO
 import pytest
 from tests.utils import Command
-from thefuck.rules.apt_invalid_operation import match, get_new_command, \
+from theoops.rules.apt_invalid_operation import match, get_new_command, \
     _get_operations
 
 invalid_operation = 'E: Invalid operation {}'.format

@@ -1,7 +1,7 @@
 import pytest
 from mock import Mock, patch
-from thefuck.rules import apt_get
-from thefuck.rules.apt_get import match, get_new_command
+from theoops.rules import apt_get
+from theoops.rules.apt_get import match, get_new_command
 from tests.utils import Command
 
 
@@ -19,7 +19,7 @@ def test_match(command):
      [('vim', 'main'), ('vim-tiny', 'main')]),
     (Command(script='sudo vim', stderr='vim: command not found'),
      [('vim', 'main'), ('vim-tiny', 'main')])])
-@patch('thefuck.rules.apt_get.CommandNotFound', create=True)
+@patch('theoops.rules.apt_get.CommandNotFound', create=True)
 @patch.multiple(apt_get, create=True, apt_get='apt_get')
 def test_match_mocked(cmdnf_mock, command, return_value):
     get_packages = Mock(return_value=return_value)
@@ -42,7 +42,7 @@ def test_not_match(command):
 @pytest.mark.parametrize('command, return_value', [
     (Command(script='a_bad_cmd', stderr='a_bad_cmd: command not found'), []),
     (Command(script='vim', stderr=''), []), (Command(), [])])
-@patch('thefuck.rules.apt_get.CommandNotFound', create=True)
+@patch('theoops.rules.apt_get.CommandNotFound', create=True)
 @patch.multiple(apt_get, create=True, apt_get='apt_get')
 def test_not_match_mocked(cmdnf_mock, command, return_value):
     get_packages = Mock(return_value=return_value)
@@ -73,7 +73,7 @@ def test_get_new_command(command, new_command):
     (Command('sudo convert'), 'sudo apt-get install imagemagick && sudo convert',
      [('imagemagick', 'main'),
       ('graphicsmagick-imagemagick-compat', 'universe')])])
-@patch('thefuck.rules.apt_get.CommandNotFound', create=True)
+@patch('theoops.rules.apt_get.CommandNotFound', create=True)
 @patch.multiple(apt_get, create=True, apt_get='apt_get')
 def test_get_new_command_mocked(cmdnf_mock, command, new_command, return_value):
     get_packages = Mock(return_value=return_value)

@@ -1,7 +1,7 @@
 import os
 import pytest
 import tarfile
-from thefuck.rules.dirty_untar import match, get_new_command, side_effect, \
+from theoops.rules.dirty_untar import match, get_new_command, side_effect, \
                                       tar_extensions
 from tests.utils import Command
 

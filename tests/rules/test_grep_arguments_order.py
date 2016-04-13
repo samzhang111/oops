@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.grep_arguments_order import get_new_command, match
+from theoops.rules.grep_arguments_order import get_new_command, match
 from tests.utils import Command
 
 stderr = 'grep: {}: No such file or directory'.format

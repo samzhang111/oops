@@ -2,9 +2,9 @@
 
 import pytest
 from pathlib import Path
-from thefuck import corrector, const
+from theoops import corrector, const
 from tests.utils import Rule, Command, CorrectedCommand
-from thefuck.corrector import get_corrected_commands, organize_commands
+from theoops.corrector import get_corrected_commands, organize_commands
 
 
 class TestGetRules(object):
@@ -17,7 +17,7 @@ class TestGetRules(object):
 
     @pytest.fixture(autouse=True)
     def load_source(self, monkeypatch):
-        monkeypatch.setattr('thefuck.types.load_source',
+        monkeypatch.setattr('theoops.types.load_source',
                             lambda x, _: Rule(x))
 
     def _compare_names(self, rules, names):
@@ -46,7 +46,7 @@ def test_get_corrected_commands(mocker):
              Rule(match=lambda _: True,
                   get_new_command=lambda x: [x.script + '@', x.script + ';'],
                   priority=60)]
-    mocker.patch('thefuck.corrector.get_rules', return_value=rules)
+    mocker.patch('theoops.corrector.get_rules', return_value=rules)
     assert [cmd.script for cmd in get_corrected_commands(command)] \
            == ['test!', 'test@', 'test;']
 

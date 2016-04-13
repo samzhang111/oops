@@ -1,4 +1,4 @@
-from thefuck.rules.cd_parent import match, get_new_command
+from theoops.rules.cd_parent import match, get_new_command
 from tests.utils import Command
 
 

@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.npm_wrong_command import match, get_new_command
+from theoops.rules.npm_wrong_command import match, get_new_command
 from tests.utils import Command
 
 stdout = '''

@@ -1,18 +1,18 @@
 import pytest
-from thefuck.rules.no_command import match, get_new_command
+from theoops.rules.no_command import match, get_new_command
 from tests.utils import Command
 
 
 @pytest.fixture(autouse=True)
 def get_all_executables(mocker):
-    mocker.patch('thefuck.rules.no_command.get_all_executables',
+    mocker.patch('theoops.rules.no_command.get_all_executables',
                  return_value=['vim', 'fsck', 'git', 'go'])
 
 
 @pytest.fixture(autouse=True)
 def history_without_current(mocker):
     return mocker.patch(
-        'thefuck.rules.no_command.get_valid_history_without_current',
+        'theoops.rules.no_command.get_valid_history_without_current',
         return_value=['git commit'])
 
 

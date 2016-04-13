@@ -1,14 +1,14 @@
 #!/bin/sh
 
 should_add_alias () {
-    [ -f $1 ] && ! grep -q thefuck $1
+    [ -f $1 ] && ! grep -q theoops $1
 }
 
 installed () {
     hash $1 2>/dev/null
 }
 
-install_thefuck () {
+install_theoops () {
     # Install OS dependencies:
     if installed apt-get; then
         # Debian/Ubuntu:
@@ -32,30 +32,30 @@ install_thefuck () {
         fi
     fi
 
-    # thefuck requires fresh versions of setuptools and pip:
+    # theoops requires fresh versions of setuptools and pip:
     sudo pip install -U pip setuptools
-    sudo pip install -U thefuck
+    sudo pip install -U theoops
 
     # Setup aliases:
     if should_add_alias ~/.bashrc; then
-        echo 'eval $(thefuck --alias)' >> ~/.bashrc
+        echo 'eval $(theoops --alias)' >> ~/.bashrc
     fi
 
     if should_add_alias ~/.bash_profile; then
-        echo 'eval $(thefuck --alias)' >> ~/.bash_profile
+        echo 'eval $(theoops --alias)' >> ~/.bash_profile
     fi
 
     if should_add_alias ~/.zshrc; then
-        echo 'eval $(thefuck --alias)' >> ~/.zshrc
+        echo 'eval $(theoops --alias)' >> ~/.zshrc
     fi
 
     if should_add_alias ~/.config/fish/config.fish; then
-        thefuck --alias >> ~/.config/fish/config.fish
+        theoops --alias >> ~/.config/fish/config.fish
     fi
 
     if should_add_alias ~/.tcshrc; then
-        echo 'eval `thefuck --alias`' >> ~/.tcshrc
+        echo 'eval `theoops --alias`' >> ~/.tcshrc
     fi
 }
 
-install_thefuck
+install_theoops

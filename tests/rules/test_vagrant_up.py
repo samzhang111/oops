@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.vagrant_up import match, get_new_command
+from theoops.rules.vagrant_up import match, get_new_command
 from tests.utils import Command
 
 

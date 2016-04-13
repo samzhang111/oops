@@ -1,5 +1,5 @@
 import pytest
-from thefuck.rules.apt_get_search import get_new_command, match
+from theoops.rules.apt_get_search import get_new_command, match
 from tests.utils import Command
 
 

@@ -1,5 +1,5 @@
 from mock import patch
-from thefuck.rules.has_exists_script import match, get_new_command
+from theoops.rules.has_exists_script import match, get_new_command
 from ..utils import Command
 
 

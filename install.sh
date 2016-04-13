@@ -34,7 +34,7 @@ install_theoops () {
 
     # theoops requires fresh versions of setuptools and pip:
     sudo pip install -U pip setuptools
-    sudo pip install -U theoops
+    sudo pip install -U .
 
     # Setup aliases:
     if should_add_alias ~/.bashrc; then

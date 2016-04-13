@@ -1,4 +1,4 @@
-This is a fork of [thefuck](https://github.com/nvbn/thefuck) with "oops" replacing "fuck" :).
+This is a fork of [thefuck](https://github.com/nvbn/thefuck) with "oops" replacing "fuck" :). I changed the install section below.
 
 # The Oops [![Version][version-badge]][version-link] [![Build Status][travis-badge]][travis-link] [![Windows Build Status][appveyor-badge]][appveyor-link] [![Coverage][coverage-badge]][coverage-link] [![MIT License][license-badge]](LICENSE.md)
 
@@ -98,41 +98,7 @@ Reading package lists... Done
 
 ## Installation [*experimental*]
 
-On Ubuntu and OS X you can install `The Oops` with installation script:
-
-```bash
-wget -O - https://raw.githubusercontent.com/nvbn/theoops/master/install.sh | sh - && $0
-```
-
-## Manual installation
-
-Install `The Oops` with `pip`:
-
-```bash
-sudo -H pip install theoops
-```
-
-[Or using an OS package manager (OS X, Ubuntu, Arch).](https://github.com/nvbn/theoops/wiki/Installation)
-
-You should place this command in your `.bash_profile`, `.bashrc`, `.zshrc` or other startup script:
-
-```bash
-eval "$(theoops --alias)"
-# You can use whatever you want as an alias, like for Mondays:
-eval "$(theoops --alias OOPS)"
-```
-
-[Or in your shell config (Bash, Zsh, Fish, Powershell, tcsh).](https://github.com/nvbn/theoops/wiki/Shell-aliases)
-
-Changes will be available only in a new shell session.
-To make them available immediately, run `source ~/.bashrc` (or your shell config file like `.zshrc`).
-
-
-## Update
-
-```bash
-sudo pip install theoops --upgrade
-```
+Run `./install.sh`
 
 **Aliases changed in 1.34.**
 
